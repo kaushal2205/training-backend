@@ -4,11 +4,13 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -20,15 +22,29 @@ public class EmployeeMaster {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="Employee_id")
+	@Column(name="employee_id")
 	private Long empId;
 
+	@OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
+    private EmployeeCardDetails employeeCardDetails;
+	
+	@OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
+    private EmployeeIssueDetails employeeIssueDetails;
+	
 	@Column(unique = true)
 	private String email;
 
 	@Column(name="password")
 	private String password;
 	
+	public EmployeeIssueDetails getEmployeeIssueDetails() {
+		return employeeIssueDetails;
+	}
+
+	public void setEmployeeIssueDetails(EmployeeIssueDetails employeeIssueDetails) {
+		this.employeeIssueDetails = employeeIssueDetails;
+	}
+
 	@Column(name="first_name",nullable=false)
 	private String fName;
 
@@ -137,7 +153,14 @@ public class EmployeeMaster {
 	public void setDoj(Date doj) {
 		this.doj = doj;
 	}
+	
+	public EmployeeCardDetails getEmployeeCardDetails() {
+		return employeeCardDetails;
+	}
 
+	public void setEmployeeCardDetails(EmployeeCardDetails employeeCardDetails) {
+		this.employeeCardDetails = employeeCardDetails;
+	}
 
 
 

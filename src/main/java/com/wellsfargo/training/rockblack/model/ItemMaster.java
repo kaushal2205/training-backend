@@ -1,10 +1,12 @@
 package com.wellsfargo.training.rockblack.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -17,12 +19,23 @@ public class ItemMaster {
     @Column(name="item_id")
 	private Long itemId;
 	
+	@OneToOne(mappedBy = "item", cascade = CascadeType.ALL)
+    private EmployeeIssueDetails employeeIssueDetails;
+	
 	@Column(name="item_description")
 	private String itemDescription;
 	
 	@Column(name="issue_status")
 	private char itemStatus;
 	
+	public EmployeeIssueDetails getEmployeeIssueDetails() {
+		return employeeIssueDetails;
+	}
+
+	public void setEmployeeIssueDetails(EmployeeIssueDetails employeeIssueDetails) {
+		this.employeeIssueDetails = employeeIssueDetails;
+	}
+
 	@Column(name="item_make")
 	private String itemMake;
 	
