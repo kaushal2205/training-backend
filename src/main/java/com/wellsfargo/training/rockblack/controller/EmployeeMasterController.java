@@ -54,11 +54,13 @@ public class EmployeeMasterController {
 		String password=employee.getPassword();
 		EmployeeMaster emp = emService.loginEmployee(email).orElseThrow(() ->
 		new ResourceNotFoundException("Employee not found for this id :: "));
-
-		if(email.equals(emp.getEmail()) && password.equals(emp.getPassword()))
+		Base64.Encoder encoder = Base64.getEncoder();
+		String encodedString = encoder.encodeToString(password.getBytes(StandardCharsets.UTF_8));
+		password = encodedString;
+		if(email.equals(emp.getEmail()) || password.equals(emp.getPassword()))
 		{
+			System.out.println(emp.toString());
 			a=true;
-
 		}
 		return a;
 	}

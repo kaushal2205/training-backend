@@ -162,6 +162,21 @@ public class EmployeeMaster {
 		this.employeeCardDetails = employeeCardDetails;
 	}
 
-
-
+	@Override
+	public String toString() {
+		return "EmployeeMaster{" +
+				"empId=" + empId +
+				", employeeCardDetails=" + employeeCardDetails +
+				", employeeIssueDetails=" + employeeIssueDetails +
+				", email='" + email + '\'' +
+				", password='" + password + '\'' +
+				", fName='" + fName + '\'' +
+				", lName='" + lName + '\'' +
+				", designation='" + designation + '\'' +
+				", dept='" + dept + '\'' +
+				", gender=" + gender +
+				", dob=" + dob +
+				", doj=" + doj +
+				'}';
+	}
 }
