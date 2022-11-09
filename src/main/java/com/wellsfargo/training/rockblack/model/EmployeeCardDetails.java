@@ -2,19 +2,10 @@ package com.wellsfargo.training.rockblack.model;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="employee_card_details")
@@ -26,10 +17,12 @@ public class EmployeeCardDetails {
 	private Long id;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
     @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
     private Employee employee;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
     @JoinColumn(name = "loan_id",referencedColumnName = "loan_id")
     private LoanCard loanCard;
 	

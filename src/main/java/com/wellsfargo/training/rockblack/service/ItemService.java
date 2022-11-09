@@ -26,4 +26,9 @@ public class ItemService {
 		return itemRepository.findAll();
 	}
 
+	public Item get(long id)
+	{
+		return itemRepository.findById(id).get();
+	}
+
 }

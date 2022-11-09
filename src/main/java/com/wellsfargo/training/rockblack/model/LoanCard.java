@@ -1,13 +1,9 @@
 package com.wellsfargo.training.rockblack.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name="loan_card_master")
@@ -19,6 +15,7 @@ public class LoanCard {
 	private Long loanId;
 
 	@OneToOne(mappedBy = "loanCard", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private EmployeeCardDetails employeeCardDetails;
 
 	@Column(name="loan_type")
@@ -61,7 +58,7 @@ public class LoanCard {
 	}
 
 	public void setEmployeeCardDetails(EmployeeCardDetails employeeCardDetails) {
-		this.employeeCardDetails = employeeCardDetails;
+		this.employeeCardDetails=employeeCardDetails;
 	}
 
 }

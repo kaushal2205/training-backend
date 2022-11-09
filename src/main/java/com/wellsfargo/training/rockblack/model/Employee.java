@@ -17,6 +17,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -29,6 +30,7 @@ public class Employee {
 	private Long empId;
 
 	@OneToMany(mappedBy = "employee",fetch = FetchType.LAZY)
+	@JsonIgnore
     private Set<EmployeeCardDetails> employeeCardDetails;
 	
 	@OneToOne(mappedBy = "employee",fetch = FetchType.LAZY)

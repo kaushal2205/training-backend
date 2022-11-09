@@ -2,17 +2,10 @@ package com.wellsfargo.training.rockblack.model;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="employee_issue_details")
@@ -21,12 +14,14 @@ public class EmployeeIssueDetails {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="issue_id")
 	private Long issueId;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	@JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
     private Employee employee;
-	
-	@OneToOne(cascade = CascadeType.ALL)
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
     @JoinColumn(name = "item_id", referencedColumnName = "item_id")
     private Item item;
 	

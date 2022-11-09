@@ -24,7 +24,7 @@ public class EmployeeIssueDetailsService {
 		return emrepo.save(employeeCard);
 	}
 	
-	public List<EmployeeIssueDetails> getAllEmployeeCard(){
+	public List<EmployeeIssueDetails> getAllIssue(){
 		return emrepo.findAll();
 	}
 	
