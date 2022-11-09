@@ -1,5 +1,6 @@
 package com.wellsfargo.training.rockblack.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,16 +21,26 @@ public class EmployeeIssueDetailsService {
 	@Autowired
 	private EmployeeIssueDetailsRepository emrepo;
 	
-	public EmployeeIssueDetails registerEmployeeIssue(EmployeeIssueDetails employeeCard) {
-		return emrepo.save(employeeCard);
+	public EmployeeIssueDetails registerEmployeeIssue(EmployeeIssueDetails employeeIssue) {
+		return emrepo.save(employeeIssue);
 	}
 	
 	public List<EmployeeIssueDetails> getAllIssue(){
 		return emrepo.findAll();
 	}
 	
-	public Optional<EmployeeIssueDetails> findByEmpID(String empId) {
-		return emrepo.findByEmployee(empId); 
+	public List<EmployeeIssueDetails> findByEmpID(Long empId) {
+		List<EmployeeIssueDetails> allIssues=emrepo.findAll();
+		List<EmployeeIssueDetails> resultList=new ArrayList<>();
+
+		for(EmployeeIssueDetails issue:allIssues)
+		{
+			if(issue.getEmployee().getEmpId()==empId)
+			{
+				resultList.add(issue);
+			}
+		}
+		return resultList;
 	}
 
 }

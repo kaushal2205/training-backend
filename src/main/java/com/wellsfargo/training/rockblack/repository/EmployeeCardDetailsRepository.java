@@ -10,5 +10,5 @@ public interface EmployeeCardDetailsRepository extends JpaRepository<EmployeeCar
 	
 	public List<EmployeeCardDetails> findAll();
 	
-	public Optional<EmployeeCardDetails> findByEmployee(long id);
+
 }

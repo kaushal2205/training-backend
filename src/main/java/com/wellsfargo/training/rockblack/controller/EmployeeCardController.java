@@ -64,8 +64,8 @@ public class EmployeeCardController {
 //		}
 		
 		cardService.registerEmployeeCard(employeeCard);
+
 		return employeeCard;
-		
 	}
 	
 	@GetMapping("/EmployeeCard")
@@ -74,8 +74,9 @@ public class EmployeeCardController {
 	}
 	
 	@PostMapping("/findByID")
-	 Optional<EmployeeCardDetails> findByID(@Validated @RequestBody Long id){
-		return cardService.findByEmpID(id);
+	 List<EmployeeCardDetails> findByEmpID(@Validated @RequestBody Employee employee){
+		System.out.println("Controller");
+		return cardService.findByEmpID(employee.getEmpId());
 	}
 
 	

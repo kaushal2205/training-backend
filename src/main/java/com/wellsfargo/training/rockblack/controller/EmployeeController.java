@@ -47,7 +47,6 @@ public class EmployeeController {
 		if(email.equals(emp.getEmail()) && password.equals(emp.getPassword()))
 		{
 			return emp;
-
 		}
 		return null;
 	}

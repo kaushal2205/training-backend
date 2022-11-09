@@ -1,10 +1,12 @@
 package com.wellsfargo.training.rockblack.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import com.wellsfargo.training.rockblack.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +28,16 @@ public class EmployeeCardDetailsService {
 		return emrepo.findAll();
 	}
 	
-	public Optional<EmployeeCardDetails> findByEmpID(long empId) {
-		return emrepo.findByEmployee(empId); 
+	public List<EmployeeCardDetails> findByEmpID(long empId) {
+
+		List<EmployeeCardDetails> allCards=emrepo.findAll();
+		List<EmployeeCardDetails> resultList=new ArrayList<>();
+		for(EmployeeCardDetails card:allCards)
+		{
+			if(card.getEmployee().getEmpId()==empId)
+				resultList.add( card);
+		}
+		return resultList;
 	}
 
 }

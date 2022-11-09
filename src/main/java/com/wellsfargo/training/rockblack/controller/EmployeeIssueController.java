@@ -18,10 +18,10 @@ import java.util.Optional;
 @RestController
 @RequestMapping(value="/api")
 public class EmployeeIssueController {
-    EmployeeIssueDetailsService issueService=new EmployeeIssueDetailsService();
+    @Autowired
+    EmployeeIssueDetailsService issueService;
     @Autowired
     private EmployeeService emService;
-
     @Autowired
     private ItemService itemService;
     @PostMapping("/Issue")
@@ -40,7 +40,8 @@ public class EmployeeIssueController {
         employeeIssue.setIssueDate(date);
         employeeIssue.setReturnDate(returnDate);
 
-//		System.out.println(employee.getEmail());
+
+		System.out.println(employeeIssue);
 //		System.out.println(loanCard.getLoanType());
 //		System.out.println(date);
 //		System.out.println(employeeCard);
@@ -63,8 +64,8 @@ public class EmployeeIssueController {
     }
 
     @PostMapping("/findIssueByID")
-    Optional<EmployeeIssueDetails> findByID(@Validated @RequestBody Long id){
-        return issueService.findByEmpID(""+id);
+    List<EmployeeIssueDetails> findByID(@Validated @RequestBody Employee employee){
+        return issueService.findByEmpID(employee.getEmpId());
     }
 
 }

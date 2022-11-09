@@ -65,6 +65,17 @@ public class EmployeeIssueDetails {
 		this.issueDate = issueDate;
 	}
 
+	@Override
+	public String toString() {
+		return "EmployeeIssueDetails{" +
+				"issueId=" + issueId +
+				", employee=" + employee +
+				", item=" + item +
+				", issueDate=" + issueDate +
+				", returnDate=" + returnDate +
+				'}';
+	}
+
 	public Date getReturnDate() {
 		return returnDate;
 	}

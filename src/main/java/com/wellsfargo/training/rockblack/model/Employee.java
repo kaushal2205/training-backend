@@ -29,7 +29,7 @@ public class Employee {
 	@Column(name="employee_id")
 	private Long empId;
 
-	@OneToMany(mappedBy = "employee",fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "employee",fetch = FetchType.LAZY,cascade=CascadeType.ALL)
 	@JsonIgnore
     private Set<EmployeeCardDetails> employeeCardDetails;
 	

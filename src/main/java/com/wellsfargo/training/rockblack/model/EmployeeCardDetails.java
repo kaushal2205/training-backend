@@ -16,12 +16,12 @@ public class EmployeeCardDetails {
 	@Column(name="id")
 	private Long id;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY,cascade=CascadeType.ALL)
 	@JsonIgnore
     @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
     private Employee employee;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
+
+	@ManyToOne(fetch = FetchType.LAZY,cascade=CascadeType.ALL)
 	@JsonIgnore
     @JoinColumn(name = "loan_id",referencedColumnName = "loan_id")
     private LoanCard loanCard;
