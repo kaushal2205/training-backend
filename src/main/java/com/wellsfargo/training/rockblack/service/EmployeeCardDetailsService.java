@@ -8,6 +8,8 @@ import javax.transaction.Transactional;
 
 import com.wellsfargo.training.rockblack.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import com.wellsfargo.training.rockblack.model.EmployeeCardDetails;
@@ -28,16 +30,19 @@ public class EmployeeCardDetailsService {
 		return emrepo.findAll();
 	}
 	
-	public List<EmployeeCardDetails> findByEmpID(long empId) {
-
-		List<EmployeeCardDetails> allCards=emrepo.findAll();
-		List<EmployeeCardDetails> resultList=new ArrayList<>();
-		for(EmployeeCardDetails card:allCards)
-		{
-			if(card.getEmployee().getEmpId()==empId)
-				resultList.add( card);
-		}
-		return resultList;
+	public List<EmployeeCardDetails> getCard(Long empId){
+		return emrepo.find(empId);
 	}
+		
+
+//		List<EmployeeCardDetails> allCards=emrepo.findAll();
+//		List<EmployeeCardDetails> resultList=new ArrayList<>();
+//		for(EmployeeCardDetails card:allCards)
+//		{
+//			if(card.getEmployee().getEmpId()==empId)
+//				resultList.add( card);
+//		}
+		
+	
 
 }

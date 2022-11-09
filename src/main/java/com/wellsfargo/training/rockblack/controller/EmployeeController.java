@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +17,7 @@ import com.wellsfargo.training.rockblack.exception.ResourceNotFoundException;
 import com.wellsfargo.training.rockblack.model.Employee;
 import com.wellsfargo.training.rockblack.service.EmployeeService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping(value="/api")
 public class EmployeeController {
@@ -26,7 +28,7 @@ public class EmployeeController {
 
 	@PostMapping("/Employee")
 	public Employee register(@Validated @RequestBody Employee employee) {
-
+		System.out.println(employee.getDept());
 		emService.registerEmployee(employee);
 		return employee;
 	}
