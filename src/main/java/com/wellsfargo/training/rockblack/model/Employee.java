@@ -3,13 +3,16 @@ package com.wellsfargo.training.rockblack.model;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -18,17 +21,17 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="employee_master")
-public class EmployeeMaster {
+public class Employee {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="employee_id")
 	private Long empId;
 
-	@OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
-    private EmployeeCardDetails employeeCardDetails;
+	@OneToMany(mappedBy = "employee",fetch = FetchType.LAZY)
+    private Set<EmployeeCardDetails> employeeCardDetails;
 	
-	@OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "employee",fetch = FetchType.LAZY)
     private EmployeeIssueDetails employeeIssueDetails;
 	
 	@Column(unique = true)
@@ -68,7 +71,7 @@ public class EmployeeMaster {
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date doj;
 
-	public EmployeeMaster() {
+	public Employee() {
 		super();
 	}
 
@@ -153,15 +156,16 @@ public class EmployeeMaster {
 	public void setDoj(Date doj) {
 		this.doj = doj;
 	}
-	
-	public EmployeeCardDetails getEmployeeCardDetails() {
+
+	public Set<EmployeeCardDetails> getEmployeeCardDetails() {
 		return employeeCardDetails;
 	}
 
-	public void setEmployeeCardDetails(EmployeeCardDetails employeeCardDetails) {
+	public void setEmployeeCardDetails(Set<EmployeeCardDetails> employeeCardDetails) {
 		this.employeeCardDetails = employeeCardDetails;
 	}
-
+	
+	
 
 
 }

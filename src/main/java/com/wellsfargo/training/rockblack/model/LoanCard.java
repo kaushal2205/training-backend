@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="loan_card_master")
-public class LoanCardMaster {
+public class LoanCard {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -28,7 +28,7 @@ public class LoanCardMaster {
 	private int durationInYear;
 
 
-	public LoanCardMaster() {
+	public LoanCard() {
 		super();
 	}
 

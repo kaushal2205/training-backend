@@ -7,26 +7,26 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wellsfargo.training.rockblack.repository.LoanCardMasterRepository;
-import com.wellsfargo.training.rockblack.model.LoanCardMaster;
+import com.wellsfargo.training.rockblack.repository.LoanCardRepository;
+import com.wellsfargo.training.rockblack.model.LoanCard;
 
 @Service
 @Transactional
-public class LoanCardMasterService {
+public class LoanCardService {
 	
 	@Autowired
-	private LoanCardMasterRepository loanCardMasterRepository;
+	private LoanCardRepository loanCardMasterRepository;
 	
-	public LoanCardMaster loanCardMasterDetail(LoanCardMaster loanCard) {
+	public LoanCard loanCardRegister(LoanCard loanCard) {
 		return loanCardMasterRepository.save(loanCard);	
 	}
 	
-	public List<LoanCardMaster> getAllLoanCardMaster(){
+	public List<LoanCard> getAllLoanCardMaster(){
 		return loanCardMasterRepository.findAll();
 		
 	}
 	
-	public LoanCardMaster get(Long loanId){
+	public LoanCard get(Long loanId){
 		return loanCardMasterRepository.findById(loanId).get(); 
 	}
 

@@ -10,36 +10,36 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wellsfargo.training.rockblack.model.LoanCardMaster;
-import com.wellsfargo.training.rockblack.service.LoanCardMasterService;
+import com.wellsfargo.training.rockblack.model.LoanCard;
+import com.wellsfargo.training.rockblack.service.LoanCardService;
 
 @RestController
 @RequestMapping(value="/api")
-public class LoanCardMasterController {
+public class LoanCardController {
 	
 	@Autowired
-	private LoanCardMasterService lcmService;
+	private LoanCardService lcmService;
 	
 	@PostMapping(value="/LoanCard")
-	public LoanCardMaster loancardMastDetail(@Validated @RequestBody LoanCardMaster lcmas) {
+	public LoanCard loanCardRegister(@Validated @RequestBody LoanCard lcmas) {
 		
-		LoanCardMaster lcm= new LoanCardMaster();
+		LoanCard lcm= new LoanCard();
 		
 		lcm.setLoanType(lcmas.getLoanType());
 		lcm.setDurationInYear(lcmas.getDurationInYear());
 		
-		lcm=lcmService.loanCardMasterDetail(lcm);
+		lcm=lcmService.loanCardRegister(lcm);
 		return lcmas;
 		
 	}
 	@GetMapping(value="/allLoanCard")
-	public List<LoanCardMaster> getAllLoanCard(){
+	public List<LoanCard> getAllLoanCard(){
 		return lcmService.getAllLoanCardMaster();
 		
 	}
 	
 	@GetMapping(value="/putLoanCardMaster")
-	public LoanCardMaster getLoanCard(Long loanId){
+	public LoanCard getLoanCard(Long loanId){
 	
 		return lcmService.get(loanId); 
 	}

@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="item_master")
-public class ItemMaster {
+public class Item {
 	
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -45,7 +45,7 @@ public class ItemMaster {
 	@Column(name="item_valuation")
 	private int itemValuation;
 
-	public ItemMaster() {
+	public Item() {
 		super();
 	}
 

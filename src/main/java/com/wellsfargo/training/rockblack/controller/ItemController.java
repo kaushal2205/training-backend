@@ -11,22 +11,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import com.wellsfargo.training.rockblack.model.ItemMaster;
+import com.wellsfargo.training.rockblack.model.Item;
 
-import com.wellsfargo.training.rockblack.service.ItemMasterService;
+import com.wellsfargo.training.rockblack.service.ItemService;
 
 @RestController
 @RequestMapping(value="/api")
-public class ItemMasterController {
+public class ItemController {
 	
 	@Autowired
-	private ItemMasterService imService;
+	private ItemService imService;
 	
 	
 	@PostMapping("/Item")
-	public ItemMaster itemMastDetail(@Validated @RequestBody ItemMaster item) {
+	public Item itemRegister(@Validated @RequestBody Item item) {
 		
-		ItemMaster im=new ItemMaster();
+		Item im=new Item();
 		
 		im.setItemId(item.getItemId());
 		im.setItemDescription(item.getItemDescription());
@@ -36,13 +36,13 @@ public class ItemMasterController {
 		im.setItemValuation(item.getItemValuation());
 		
 		
-		im=imService.itemMasterDetail(im);
+		im=imService.itemRegister(im);
 		return item;
 	}
 	
 	@GetMapping("/allItem")
-	public List<ItemMaster> getAllItemMaster(){
-		return imService.getAllItemMaster();
+	public List<Item> getAllItem(){
+		return imService.getAllItem();
 	}
 
 }

@@ -24,11 +24,11 @@ public class EmployeeIssueDetails {
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
-    private EmployeeMaster employee;
+    private Employee employee;
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "item_id", referencedColumnName = "item_id")
-    private ItemMaster item;
+    private Item item;
 	
 	@Column(name="issue_date",nullable=false)
 	@JsonFormat(pattern="yyyy-MM-dd")
@@ -46,19 +46,19 @@ public class EmployeeIssueDetails {
 		this.issueId = issueId;
 	}
 
-	public EmployeeMaster getEmployee() {
+	public Employee getEmployee() {
 		return employee;
 	}
 
-	public void setEmployee(EmployeeMaster employee) {
+	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
 
-	public ItemMaster getItem() {
+	public Item getItem() {
 		return item;
 	}
 
-	public void setItem(ItemMaster item) {
+	public void setItem(Item item) {
 		this.item = item;
 	}
 
