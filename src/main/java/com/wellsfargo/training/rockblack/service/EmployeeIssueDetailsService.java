@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import com.wellsfargo.training.rockblack.model.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,15 +30,15 @@ public class EmployeeIssueDetailsService {
 		return emrepo.findAll();
 	}
 	
-	public List<EmployeeIssueDetails> findByEmpID(Long empId) {
+	public List<Item> findByEmpID(Long empId) {
 		List<EmployeeIssueDetails> allIssues=emrepo.findAll();
-		List<EmployeeIssueDetails> resultList=new ArrayList<>();
+		List<Item> resultList=new ArrayList<>();
 
 		for(EmployeeIssueDetails issue:allIssues)
 		{
 			if(issue.getEmployee().getEmpId()==empId)
 			{
-				resultList.add(issue);
+				resultList.add(issue.getItem());
 			}
 		}
 		return resultList;

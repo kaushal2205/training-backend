@@ -141,9 +141,8 @@ public class EmployeeCardController {
 	}
 	
 	@PostMapping("/findByID")
-	 List<EmployeeCardDetails> findByEmpID(@Validated @RequestBody Employee employee){
-		
-		return cardService.getCard(employee.getEmpId());
+	 List<LoanCard> findByEmpID(@Validated @RequestBody Employee employee){
+		return cardService.findByEmpID(employee.getEmpId());
 	}
 
 	

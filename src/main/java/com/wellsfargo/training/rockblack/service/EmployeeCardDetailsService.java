@@ -7,9 +7,8 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import com.wellsfargo.training.rockblack.exception.ResourceNotFoundException;
+import com.wellsfargo.training.rockblack.model.LoanCard;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import com.wellsfargo.training.rockblack.model.EmployeeCardDetails;
@@ -21,6 +20,8 @@ import com.wellsfargo.training.rockblack.repository.EmployeeCardDetailsRepositor
 public class EmployeeCardDetailsService {
 	@Autowired
 	private EmployeeCardDetailsRepository emrepo;
+	@Autowired
+	private LoanCardService loanService;
 	
 	public EmployeeCardDetails registerEmployeeCard(EmployeeCardDetails employeeCard) {
 		return emrepo.save(employeeCard);
@@ -30,19 +31,18 @@ public class EmployeeCardDetailsService {
 		return emrepo.findAll();
 	}
 	
-	public List<EmployeeCardDetails> getCard(Long empId){
-		return emrepo.find(empId);
-	}
-		
+	public List<LoanCard> findByEmpID(long empId) {
 
-//		List<EmployeeCardDetails> allCards=emrepo.findAll();
-//		List<EmployeeCardDetails> resultList=new ArrayList<>();
-//		for(EmployeeCardDetails card:allCards)
-//		{
-//			if(card.getEmployee().getEmpId()==empId)
-//				resultList.add( card);
-//		}
-		
-	
+		List<EmployeeCardDetails> allCards=emrepo.findAll();
+		List<LoanCard> resultList=new ArrayList<>();
+		for(EmployeeCardDetails card:allCards)
+		{
+			if(card.getEmployee().getEmpId()==empId) {
+				resultList.add(card.getLoanCard());
+			}
+		}
+
+		return resultList;
+	}
 
 }

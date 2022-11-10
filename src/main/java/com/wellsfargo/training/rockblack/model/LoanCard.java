@@ -14,7 +14,7 @@ public class LoanCard {
 	@Column(name="loan_id")
 	private Long loanId;
 
-	@OneToOne(mappedBy = "loanCard", cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+	@OneToOne(mappedBy = "loanCard", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private EmployeeCardDetails employeeCardDetails;
 
@@ -26,7 +26,7 @@ public class LoanCard {
 
 
 	public LoanCard() {
-		super();
+
 	}
 
 	public Long getLoanId() {

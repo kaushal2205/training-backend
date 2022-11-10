@@ -64,7 +64,7 @@ public class EmployeeIssueController {
     }
 
     @PostMapping("/findIssueByID")
-    List<EmployeeIssueDetails> findByID(@Validated @RequestBody Employee employee){
+    List<Item> findByID(@Validated @RequestBody Employee employee){
         return issueService.findByEmpID(employee.getEmpId());
     }
 
