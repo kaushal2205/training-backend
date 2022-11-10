@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(value="/api")
 public class EmployeeIssueController {
     @Autowired
@@ -63,7 +64,7 @@ public class EmployeeIssueController {
         return issueService.getAllIssue();
     }
 
-    @PostMapping("/findIssueByID")
+    @PostMapping("/findItemsByID")
     List<Item> findByID(@Validated @RequestBody Employee employee){
         return issueService.findByEmpID(employee.getEmpId());
     }

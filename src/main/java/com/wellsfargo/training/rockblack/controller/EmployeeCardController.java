@@ -72,13 +72,15 @@ public class EmployeeCardController {
 		}
 		
 		lc.setDurationInYear(duration);
-		loanService.loanCardRegister(lc);
+
 		
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");  
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDateTime now = LocalDateTime.now();  
-		SimpleDateFormat formatter2=new SimpleDateFormat("yyyy-MM-dd");  
+		SimpleDateFormat formatter2=new SimpleDateFormat("yyyy-MM-dd");
 		Date date =formatter2.parse(now.format(dtf));
-		
+		lc.setIssueDate(date);
+		loanService.loanCardRegister(lc);
+
 		EmployeeCardDetails employeeCard=new EmployeeCardDetails();
 		Employee employee= emService.get(id);
 		employeeCard.setEmployee(employee);
@@ -108,7 +110,7 @@ public class EmployeeCardController {
 		Employee employee= emService.get(id);
 		Long id1=Long.parseLong(String.valueOf(request.get("loanId")));
 		LoanCard loanCard=loanService.get(id1);
-		Date date=(Date) new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf(request.get("issueDate")));  
+		Date date=(Date) new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf(request.get("issueDate")));
 		EmployeeCardDetails employeeCard=new EmployeeCardDetails();
 		
 		employeeCard.setEmployee(employee);
@@ -137,7 +139,7 @@ public class EmployeeCardController {
 		return cardService.getAllEmployeeCard();
 	}
 	
-	@PostMapping("/findByID")
+	@PostMapping("/findLoanByEmpID")
 	 List<LoanCard> findByEmpID(@Validated @RequestBody Employee employee){
 		return cardService.findByEmpID(employee.getEmpId());
 	}

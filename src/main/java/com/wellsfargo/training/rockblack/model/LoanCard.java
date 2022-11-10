@@ -1,8 +1,10 @@
 package com.wellsfargo.training.rockblack.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -24,6 +26,17 @@ public class LoanCard {
 	@Column(name="duration_in_year")
 	private int durationInYear;
 
+	@Column(name="issue_date",nullable=false)
+	@JsonFormat(pattern="yyyy-MM-dd")
+	private Date issueDate;
+
+	public Date getIssueDate() {
+		return issueDate;
+	}
+
+	public void setIssueDate(Date issueDate) {
+		this.issueDate = issueDate;
+	}
 
 	public LoanCard() {
 

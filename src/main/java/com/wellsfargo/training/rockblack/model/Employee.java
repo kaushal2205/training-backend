@@ -63,14 +63,12 @@ public class Employee {
 	private String dept;
 
 	@Column(name="gender",nullable=false)
-	private char gender;
+	private String gender;
 
 	@Column(name="date_of_birth",nullable=false)
-	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date dob;
 
 	@Column(name="date_of_joining",nullable=false)
-	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date doj;
 
 	public Employee() {
@@ -135,11 +133,11 @@ public class Employee {
 		this.dept = dept;
 	}
 
-	public char getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(char gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
