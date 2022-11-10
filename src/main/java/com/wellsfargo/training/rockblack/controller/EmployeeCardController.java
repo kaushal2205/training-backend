@@ -12,11 +12,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.wellsfargo.training.rockblack.model.Employee;
 import com.wellsfargo.training.rockblack.model.EmployeeCardDetails;
@@ -31,6 +27,7 @@ import com.wellsfargo.training.rockblack.service.LoanCardService;
 
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(value="/api")
 public class EmployeeCardController {
 	
@@ -52,7 +49,7 @@ public class EmployeeCardController {
 	@PostMapping("/master")
 	public void addAll(@Validated @RequestBody Map<String,Object> request) throws ParseException {
 		Long id=Long.parseLong(String.valueOf(request.get("empId")));
-		
+		System.out.println(request);
 		String description=String.valueOf(request.get("description"));
 		String category=String.valueOf(request.get("category"));
 		String make=String.valueOf(request.get("make"));
