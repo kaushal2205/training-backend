@@ -70,10 +70,7 @@ public class EmployeeCardController {
 		}else {
 			duration =2;
 		}
-		
 		lc.setDurationInYear(duration);
-
-		
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDateTime now = LocalDateTime.now();  
 		SimpleDateFormat formatter2=new SimpleDateFormat("yyyy-MM-dd");
@@ -99,8 +96,6 @@ public class EmployeeCardController {
 		Date returnDate =c.getTime();
 		issue.setReturnDate(returnDate);
 		issueService.registerEmployeeIssue(issue);
-		
-		
 	}
 	
 	@PostMapping("/EmployeeCard")

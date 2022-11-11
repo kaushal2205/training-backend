@@ -35,24 +35,10 @@ public class EmployeeIssueController {
         Date date=(Date) new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf(request.get("issueDate")));
         Date returnDate=(Date) new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf(request.get("returnDate")));
 
-
         employeeIssue.setEmployee(employee);
         employeeIssue.setItem(item);
         employeeIssue.setIssueDate(date);
         employeeIssue.setReturnDate(returnDate);
-
-
-		System.out.println(employeeIssue);
-//		System.out.println(loanCard.getLoanType());
-//		System.out.println(date);
-//		System.out.println(employeeCard);
-
-//		try {
-//			cardService.registerEmployeeCard(employeeCard);
-//		}
-//		catch(Exception e) {
-//			System.out.println(e);
-//		}
 
         issueService.registerEmployeeIssue(employeeIssue);
         return employeeIssue;

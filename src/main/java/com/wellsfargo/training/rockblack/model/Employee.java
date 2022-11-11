@@ -33,8 +33,9 @@ public class Employee {
 	@JsonIgnore
     private Set<EmployeeCardDetails> employeeCardDetails;
 	
-	@OneToOne(mappedBy = "employee",fetch = FetchType.LAZY)
-    private EmployeeIssueDetails employeeIssueDetails;
+	@OneToMany(mappedBy = "employee",fetch = FetchType.LAZY)
+	@JsonIgnore
+    private Set<EmployeeIssueDetails> employeeIssueDetails;
 	
 	@Column(unique = true)
 	private String email;
@@ -42,12 +43,12 @@ public class Employee {
 	@Column(name="password")
 	private String password;
 	
-	public EmployeeIssueDetails getEmployeeIssueDetails() {
+	public Set<EmployeeIssueDetails> getEmployeeIssueDetails() {
 		return employeeIssueDetails;
 	}
 
 	public void setEmployeeIssueDetails(EmployeeIssueDetails employeeIssueDetails) {
-		this.employeeIssueDetails = employeeIssueDetails;
+		this.employeeIssueDetails.add(employeeIssueDetails);
 	}
 
 	@Column(name="first_name",nullable=false)
